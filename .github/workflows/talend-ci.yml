@@ -32,6 +32,7 @@ jobs:
         working-directory: TALENDGITHUB/poms
 
       - name: Upload artefact to Talend Cloud
+        working-directory: TALENDGITHUB/poms
         run: |
           echo "Uploading artefact to Talend Cloud..."
           curl -X POST "$TALEND_API/tmc/v2.4/artifacts" \
@@ -39,6 +40,7 @@ jobs:
             -F "file=@target/${ARTIFACT_NAME}-${ARTIFACT_VERSION}.zip"
 
       - name: Deploy and execute Talend job
+        working-directory: TALENDGITHUB/poms
         run: |
           echo "Deploying job to TMC (Dev)..."
           curl -X POST "$TALEND_API/tmc/v2.4/executions" \
