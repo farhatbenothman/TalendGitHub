@@ -1,0 +1,50 @@
+name: Build and Deploy Talend Job
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/.m2/repository"
+      ARTIFACT_NAME: "J_Test_Azure"
+      ARTIFACT_VERSION: "0.1"
+      TALEND_API: "https://api.eu.cloud.talend.com"
+      TALEND_TOKEN: ${{ secrets.TALEND_TOKEN }}
+      TMC_ENV_ID: ${{ secrets.TMC_ENV_ID }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Build Talend job with Maven
+        run: mvn clean package
+
+      - name: Upload artefact to Talend Cloud
+        run: |
+          echo "Uploading artefact to Talend Cloud..."
+          curl -X POST "$TALEND_API/tmc/v2.4/artifacts" \
+            -H "Authorization: Bearer $TALEND_TOKEN" \
+            -F "file=@target/${ARTIFACT_NAME}-${ARTIFACT_VERSION}.zip"
+
+      - name: Deploy and execute Talend job
+        run: |
+          echo "Deploying job to TMC (Dev)..."
+          curl -X POST "$TALEND_API/tmc/v2.4/executions" \
+            -H "Authorization: Bearer $TALEND_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+                  "artifactId": "'"$ARTIFACT_NAME"'",
+                  "environmentId": "'"$TMC_ENV_ID"'",
+                  "context": "Dev"
+                }'
