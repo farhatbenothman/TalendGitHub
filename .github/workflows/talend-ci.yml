@@ -29,6 +29,7 @@ jobs:
 
       - name: Build Talend job with Maven
         run: mvn clean package
+        working-directory: TALENDGITHUB/poms
 
       - name: Upload artefact to Talend Cloud
         run: |
