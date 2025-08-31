@@ -27,8 +27,8 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Build Talend job with Maven
-        run: mvn clean package
+      - name: Build specific job module
+        run: mvn clean package --file TALENDGITHUB/poms/jobs/process/job_test_0.1/pom.xml
         working-directory: TALENDGITHUB/poms
       - name: Check what's in target/
         run: ls -lh TALENDGITHUB/poms/target
