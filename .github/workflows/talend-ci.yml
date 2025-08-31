@@ -28,10 +28,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Build specific job module
-        run: mvn clean package --file TALENDGITHUB/poms/jobs/process/job_test_0.1/pom.xml
+        run: mvn clean package --file jobs/process/job_test_0.1/pom.xml
         working-directory: TALENDGITHUB/poms
       - name: Check what's in target/
-        run: ls -lh TALENDGITHUB/poms/target
+        run: ls -lh TALENDGITHUB/poms
 
       - name: Upload artefact to Talend Cloud
         working-directory: TALENDGITHUB/poms
