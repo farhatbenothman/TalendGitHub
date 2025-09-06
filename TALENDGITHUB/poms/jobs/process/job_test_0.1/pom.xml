@@ -398,6 +398,7 @@
         </plugins>
       </build>
     </profile>
+      <!--
     <profile>
       <id>signature</id>
       <activation>
@@ -427,6 +428,7 @@
         </plugins>
       </build>
     </profile>
+      -->
     <profile>
       <id>default-settings</id>
       <activation>
