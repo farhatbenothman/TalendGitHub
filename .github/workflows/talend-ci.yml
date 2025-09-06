@@ -29,7 +29,8 @@ jobs:
 
       - name: Build specific job module
         working-directory: TALENDGITHUB/poms
-        run: mvn clean package --file jobs/process/job_test_0.1/pom.xml --settings ${{ github.workspace }}/.github/maven/settings.xml
+        run: mvn clean package --settings ${{ github.workspace }}/.github/maven/settings.xml --file jobs/process/job_test_0.1/pom.xml
+
 
       - name: List files in job directory after build
         run: ls -lR TALENDGITHUB/poms/jobs/process/job_test_0.1/target
