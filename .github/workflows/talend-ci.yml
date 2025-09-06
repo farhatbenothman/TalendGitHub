@@ -28,8 +28,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build specific job module
-        run: mvn clean package --file jobs/process/job_test_0.1/pom.xml
         working-directory: TALENDGITHUB/poms
+        run: mvn clean package --file jobs/process/job_test_0.1/pom.xml --settings ${{ github.workspace }}/.github/maven/settings.xml
+
       - name: List files in job directory after build
         run: ls -lR TALENDGITHUB/poms/jobs/process/job_test_0.1/target
 
