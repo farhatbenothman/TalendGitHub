@@ -406,8 +406,6 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.talend.ci</groupId>
-            <artifactId>signer-maven-plugin</artifactId>
             <version>${signer.version}</version>
             <executions>
               <execution>
