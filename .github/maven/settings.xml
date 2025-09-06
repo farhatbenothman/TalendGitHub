@@ -4,7 +4,7 @@
   <pluginRepositories>
     <pluginRepository>
       <id>talend-nexus</id>
-      <url>https://talend-update.talend.com/nexus/content/repositories/TalendOpenSource</url>
+      <url>https://talend-update.talend.com/nexus/content/repositories/TalendOpenSource/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -13,4 +13,32 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
+
+  <profiles>
+    <profile>
+      <id>use-talent-nexus</id>
+      <repositories>
+        <repository>
+          <id>talend-nexus</id>
+          <url>https://talend-update.talend.com/nexus/content/repositories/TalendOpenSource/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>talend-nexus</id>
+          <url>https://talend-update.talend.com/nexus/content/repositories/TalendOpenSource/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>use-talent-nexus</activeProfile>
+  </activeProfiles>
 </settings>
