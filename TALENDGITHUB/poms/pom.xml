@@ -337,22 +337,6 @@
       <id>cloud-publisher</id>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.talend.ci</groupId>
-            <artifactId>cloudpublisher-maven-plugin</artifactId>
-            <version>8.0.12</version>
-            <executions>
-              <execution>
-                <phase>deploy</phase>
-                <goals>
-                  <goal>publish</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <skip>${cloud.publisher.skip}</skip>
-            </configuration>
-          </plugin>
         </plugins>
       </build>
     </profile>
